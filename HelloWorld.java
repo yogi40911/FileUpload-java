@@ -1,5 +1,5 @@
 class HelloWorld{
-	public static void main(String[] args){
-		system.out.println("Great! created a first jobs");
-	}
+	public static void main(String args[]){  
+     	System.out.println("Hello Java");  
+    }  
 }
