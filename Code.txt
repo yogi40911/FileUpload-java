@@ -1,0 +1,73 @@
+package package1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Testcode6 
+{
+
+	public static void main(String[] args) throws InterruptedException, IOException 
+	{
+		System.setProperty("webdriver.chrome.driver","E:\\chromedriver.exe");
+		WebDriver driver  = new ChromeDriver();
+		//String baseUrl = "https://www.google.com/";
+		driver.get("https://extranet.geosolinc.com/default.asp");
+		Thread.sleep(2000);
+		driver.manage().window().maximize();
+		WebElement Username=driver.findElement(By.id("txtLogin_Username"));
+		Username.sendKeys("nlalchandani");
+		WebElement Password=driver.findElement(By.id("txtLogin_Password"));
+		Password.sendKeys("vW3DH:v59Km#cplqS=2D");
+		WebElement Login=driver.findElement(By.id("login_submit"));
+		Login.click();
+		Thread.sleep(3000);
+		WebElement RecordType_arrow=driver.findElement(By.id("ctl00_ContentPlaceHolder1_radcboRecordType_Arrow"));
+		RecordType_arrow.click();
+		Thread.sleep(2000);
+		WebElement CheckAll=driver.findElement(By.xpath("/html/body/div[2]/form/div[1]/div/div/div/label/input"));
+		CheckAll.click();
+		WebElement Project_arrow=driver.findElement(By.id("ctl00_ContentPlaceHolder1_radcboSubProject_Arrow"));
+		Project_arrow.click();
+		Thread.sleep(2000);
+		WebElement Project_arrow1=driver.findElement(By.id("ctl00_ContentPlaceHolder1_radcboSubProject_Arrow"));
+		Project_arrow1.click();
+		WebElement Any_Project=driver.findElement(By.xpath("/html/body/div[2]/form/div[1]/div/div/ul/li[2]/label"));
+		Any_Project.click();
+		WebElement Position=driver.findElement(By.id("ctl00_ContentPlaceHolder1_ddlPosition"));
+		Position.click();
+		Thread.sleep(5000);
+		WebElement Any_Position=driver.findElement(By.xpath("//*[@id=\"ctl00_ContentPlaceHolder1_ddlPosition\"]/option[1]"));
+		Any_Position.click();
+		Thread.sleep(5000);
+		//WebElement Incident=driver.findElement(By.xpath("//*[@id=\"ctl00_ContentPlaceHolder1_radcboRecordType_DropDown\"]/div/ul/li[1]"));
+		//Incident.click();
+		WebElement Export=driver.findElement(By.id("ctl00_ContentPlaceHolder1_grdClientTickets_btnExportTop"));
+		Export.click();
+		Thread.sleep(15000);
+		System.out.println("File exported..");
+        ///////////////////////////////////////////////////////////////////////
+        System.out.println("Operation started...");
+        Runtime runtime = Runtime.getRuntime();    
+        Process proc = runtime.exec("cmd.exe /c powershell.exe  E:\\Script3.ps1");
+        InputStream is = proc.getInputStream();
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader reader = new BufferedReader(isr);
+        String line;
+        while ((line = reader.readLine()) != null)
+        {
+          System.out.println(line);
+        }
+        reader.close();
+        proc.getOutputStream().close();
+        System.out.println("Operation performed successfully");
+		
+	}
+
+}
